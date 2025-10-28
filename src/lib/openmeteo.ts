@@ -56,7 +56,7 @@ export async function fetchHourlyTemperature(
 
   const hourly = response.hourly();
   if (!hourly) {
-    throw new Error("Hourly data is missing in Open‑Meteo response");
+    throw new Error("Hourly data is missing in Open-Meteo response");
   }
 
   const interval = hourly.interval();

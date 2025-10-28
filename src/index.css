@@ -48,6 +48,15 @@ h1 {
   font-size: 2.25rem;
 }
 
+.forecast-title,
 h2 {
-  font-size: 1.875rem;
+  font-size: 1.35rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+dialog::backdrop {
+  @apply bg-black/30 opacity-40 backdrop-blur-2xl;
 }

@@ -5,7 +5,7 @@ function Home() {
   const { forecasts } = useForecasts();
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
       <Header />
       <main>
         <Grid
@@ -13,7 +13,7 @@ function Home() {
           renderComponent={(item) => <WeatherCard {...item} />}
         />
       </main>
-    </>
+    </div>
   );
 }
 

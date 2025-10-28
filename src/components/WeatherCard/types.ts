@@ -1,3 +1,3 @@
-export type WeatherCardPropsType = {
-  name: string;
-};
+import type { WeatherForecastType } from "../../lib/types";
+
+export type WeatherCardPropsType = WeatherForecastType;

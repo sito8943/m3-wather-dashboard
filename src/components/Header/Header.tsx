@@ -1,10 +1,13 @@
 import { faAdd, faTrash } from "@fortawesome/free-solid-svg-icons";
-import type { WeatherForecastType } from "../../lib/types";
 import useForecasts from "../../store/useForecasts";
 import { IconButton } from "../Buttons";
+import { AddForecastDialog } from "../Dialogs";
+import { useState } from "react";
 
 function Header() {
-  const { forecasts, addForecast, removeForecast } = useForecasts();
+  const { removeForecast } = useForecasts();
+
+  const [showAdd, setShowAdd] = useState(false);
 
   return (
     <header className="flex items-center justify-between px-4">
@@ -14,11 +17,7 @@ function Header() {
           name="add-forecast"
           aria-label="Click to add a new forecast"
           type="button"
-          onClick={() =>
-            addForecast({
-              name: `Location ${forecasts.length + 1}`,
-            } as WeatherForecastType)
-          }
+          onClick={() => setShowAdd(true)}
           icon={faAdd}
         />
         <IconButton
@@ -29,6 +28,7 @@ function Header() {
           icon={faTrash}
         />
       </div>
+      <AddForecastDialog open={showAdd} onClose={() => setShowAdd(false)} />
     </header>
   );
 }

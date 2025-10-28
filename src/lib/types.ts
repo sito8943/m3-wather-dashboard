@@ -1,6 +1,6 @@
-import type { ForecastMeta } from "./openmeteo";
+import type { ForecastParams } from "./openmeteo";
 
-export type WeatherForecastType = {
+export interface WeatherForecastType extends ForecastParams {
+  id: string;
   name: string;
-  meta: ForecastMeta;
 };

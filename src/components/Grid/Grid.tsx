@@ -5,7 +5,7 @@ function Grid(props: GridPropsType) {
   const { items, renderComponent } = props;
 
   return (
-    <ul className="flex flex-wrap items-center justify-center">
+    <ul className="flex flex-wrap items-center justify-center gap-4">
       {items?.map((item) => (
         <GridItem key={item.name}>{renderComponent(item)}</GridItem>
       ))}
