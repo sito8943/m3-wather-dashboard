@@ -35,6 +35,8 @@ function Dialog(props: DialogPropsType) {
         className="text-bg-error absolute top-1 right-1"
         onClick={onClose}
         icon={faClose}
+        aria-label="Close"
+        title="Close"
       />
     </dialog>,
     document.body

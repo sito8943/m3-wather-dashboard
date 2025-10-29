@@ -8,6 +8,7 @@ function Home() {
 
   const [editing, setEditing] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [refreshAt, setRefreshAt] = useState<number>(() => Date.now());
 
   const onEdit = (id: string) => setEditing(id);
 
@@ -15,7 +16,7 @@ function Home() {
 
   return (
     <div className="flex flex-col gap-4">
-      <Header />
+      <Header onRefresh={() => setRefreshAt(Date.now())} />
       <main className="px-3">
         {forecasts?.length > 0 ? (
           <Grid
@@ -24,6 +25,7 @@ function Home() {
               <WeatherCard
                 onDeleteClick={onDelete}
                 onEditClick={onEdit}
+                refreshAt={refreshAt}
                 {...item}
               />
             )}
