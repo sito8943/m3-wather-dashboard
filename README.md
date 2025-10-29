@@ -1,3 +1,5 @@
+<img width="2940" height="1480" alt="image" src="https://github.com/user-attachments/assets/70cda56a-0a86-4745-bab2-f107fbf0f0f2" />
+
 # Weather Dashboard (React + TypeScript + Vite)
 
 Small weather dashboard that lets you add multiple locations and view the current temperature and conditions using Open‑Meteo. Forecasts are persisted locally and can be refreshed, edited, or removed.
