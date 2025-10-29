@@ -60,3 +60,19 @@ h3 {
 dialog::backdrop {
   @apply bg-black/30 opacity-40 backdrop-blur-2xl;
 }
+
+/* Simple, single-color weather overlays */
+.weather-anim {
+  opacity: 0.25; /* semi-transparent overlay */
+}
+
+.weather-clear { background-color: rgba(255, 215, 64, 0.5); }
+.weather-clouds { background-color: rgba(176, 196, 222, 0.5); }
+.weather-overcast { background-color: rgba(112, 128, 144, 0.5); }
+.weather-fog { background-color: rgba(200, 200, 200, 0.4); }
+.weather-drizzle { background-color: rgba(135, 206, 250, 0.4); }
+.weather-rain { background-color: rgba(100, 149, 237, 0.45); }
+.weather-freezing { background-color: rgba(224, 255, 255, 0.45); }
+.weather-snow { background-color: rgba(176, 224, 230, 0.5); }
+.weather-showers { background-color: rgba(65, 105, 225, 0.5); }
+.weather-thunder { background-color: rgba(72, 61, 139, 0.45); }

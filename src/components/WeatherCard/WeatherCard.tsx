@@ -3,7 +3,7 @@ import { IconButton } from "../Buttons";
 import type { WeatherCardPropsType } from "./types";
 import fetchHourlyTemperature from "../../lib/openmeteo";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { getWeatherText } from "./utils";
+import { getWeatherText, getWeatherTheme } from "./utils";
 
 function WeatherCard(props: WeatherCardPropsType) {
   const { id, name, onEditClick, onDeleteClick, latitude, longitude, url, hourly } = props;
@@ -54,32 +54,40 @@ function WeatherCard(props: WeatherCardPropsType) {
     init();
   }, [init]);
 
+  const themeClass = getWeatherTheme(weatherCode);
+
   return (
     <article
       id={name}
-      className="flex flex-col border-2 border-base-dark rounded-3xl p-5 gap-4 md:min-w-50 max-sm:w-full"
+      className="relative overflow-hidden flex flex-col border-2 border-base-dark rounded-3xl p-5 gap-4 md:min-w-50 max-sm:w-full"
     >
-      <header className="flex items-center justify-between gap-4">
-        <h2>{name}</h2>
-        <div className="flex gap-2">
-          <IconButton onClick={() => onEditClick(id)} icon={faEdit} />
-          <IconButton
-            onClick={() => onDeleteClick(id, name)}
-            icon={faTrash}
-            className="text-bg-error"
-          />
+      <div
+        className={`absolute inset-0 pointer-events-none weather-anim ${themeClass} z-0`}
+        aria-hidden="true"
+      />
+      <div className="relative z-10">
+        <header className="flex items-center justify-between gap-4">
+          <h2>{name}</h2>
+          <div className="flex gap-2">
+            <IconButton onClick={() => onEditClick(id)} icon={faEdit} />
+            <IconButton
+              onClick={() => onDeleteClick(id, name)}
+              icon={faTrash}
+              className="text-bg-error"
+            />
+          </div>
+        </header>
+        <div className="flex items-end justify-start gap-2 mt-2">
+          <span className="text-4xl font-semibold">
+            {loading ? "…" : temperature === null ? "—" : temperature.toFixed(1)}
+          </span>
+          <span className="text-lg text-text-muted">{loading ? "" : "°C"}</span>
         </div>
-      </header>
-      <div className="flex items-end justify-start gap-2">
-        <span className="text-4xl font-semibold">
-          {loading ? "…" : temperature === null ? "—" : temperature.toFixed(1)}
-        </span>
-        <span className="text-lg text-text-muted">{loading ? "" : "°C"}</span>
+        {!loading && !error && weatherText ? (
+          <p className="text-sm text-text-muted">{weatherText}</p>
+        ) : null}
+        {error ? <p className="text-sm text-bg-error">{error}</p> : null}
       </div>
-      {!loading && !error && weatherText ? (
-        <p className="text-sm text-text-muted">{weatherText}</p>
-      ) : null}
-      {error ? <p className="text-sm text-bg-error">{error}</p> : null}
     </article>
   );
 }
