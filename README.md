@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# Weather Dashboard (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Small weather dashboard that lets you add multiple locations and view the current temperature and conditions using Open‑Meteo. Forecasts are persisted locally and can be refreshed, edited, or removed.
 
-Currently, two official plugins are available:
+**Features**
+- Add forecasts: Provide name, latitude, longitude, and optional API URL.
+- Current conditions: Shows current temperature (°C) and a readable weather description.
+- Visual cues: Card background color adapts to the current weather.
+- Manage: Edit a forecast, delete one, or clear all with a single click.
+- Refresh: One‑click refresh updates all cards to “now”.
+- Local persistence: Saved in `localStorage` using a configurable key.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Tech Stack**
+- React 19, TypeScript, Vite 7
+- Tailwind CSS 4
+- react‑hook‑form
+- Font Awesome (icons)
+- Open‑Meteo client (`openmeteo`)
 
-## React Compiler
+**Getting Started**
+- Prerequisites: Node.js 18+ recommended.
+- Install: `npm install`
+- Dev server: `npm run dev`
+- Lint: `npm run lint`
+- Build: `npm run build`
+- Preview build: `npm run preview`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Environment**
+- Create a `.env` file with:
+  - `VITE_FORECASTS_LOCAL_KEY="local.forecasts"`
+- Used by `src/config.ts:1` to name the storage bucket.
 
-## Expanding the ESLint configuration
+**Usage**
+- Add a forecast using the “+” button in the header.
+  - Enter a friendly name, latitude, longitude, and optional custom URL.
+  - Default URL is Open‑Meteo: `https://api.open-meteo.com/v1/forecast`.
+- Each card shows:
+  - Current temperature (°C) and weather description in English.
+  - A subtle background color matching the weather.
+  - Edit and Delete actions (with tooltips).
+- Refresh all by clicking the circular arrow in the header; cards refetch and re‑compute to the nearest hour.
+- Clear all forecasts via the trash button in the header.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Architecture Overview**
+- Data fetch: `src/lib/openmeteo.ts:1`
+  - `fetchHourlyTemperature(params)` queries Open‑Meteo and maps hourly arrays: time, temperature_2m, weathercode.
+- Domain types: `src/lib/types.ts:1`
+- Local state: `src/store/useForecasts.tsx:1`
+  - Manages add/update/remove, get by id, and persists to `localStorage`.
+- UI
+  - Header and dialogs: `src/components/Header/Header.tsx:1`, `src/components/Dialogs/*`
+  - Grid + cards: `src/components/Grid/*`, `src/components/WeatherCard/WeatherCard.tsx:1`
+  - Weather helpers: `src/components/WeatherCard/utils.ts:1` (text and background mapping)
+- View: `src/views/Home.tsx:1`
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Notes**
+- Temperature and condition are derived by finding the hourly entry closest to the current time.
+- You can customize background colors in `src/index.css:1` (`.weather-*` classes).
+- If you prefer imperial units or more variables, extend `fetchHourlyTemperature` and the card mapping.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**License**
+- MIT
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
