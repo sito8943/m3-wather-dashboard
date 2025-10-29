@@ -4,9 +4,10 @@ import { TextInput } from "../FormInputs";
 import type { AddForecast } from "../../lib/models/AddForecast";
 import FormDialog from "./FormDialog";
 import useForecasts from "../../store/useForecasts";
+import { useEffect } from "react";
 
 function AddForecastDialog(props: AddForecastDialogPropsType) {
-  const { control, handleSubmit } = useForm<AddForecast>();
+  const { control, handleSubmit, reset } = useForm<AddForecast>();
 
   const forecast = useForecasts();
 
@@ -14,6 +15,10 @@ function AddForecastDialog(props: AddForecastDialogPropsType) {
     forecast.addForecast(data);
     props.onClose();
   };
+
+  useEffect(() => {
+    reset({});
+  }, [props.open, reset]);
 
   return (
     <FormDialog

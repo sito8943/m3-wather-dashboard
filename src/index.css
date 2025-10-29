@@ -45,7 +45,7 @@ label,
 }
 
 h1 {
-  font-size: 2.25rem;
+  @apply text-4xl max-md:text-3xl max-sm:text-2xl;
 }
 
 .forecast-title,

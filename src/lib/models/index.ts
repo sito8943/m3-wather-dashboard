@@ -1,2 +1,3 @@
 import type { AddForecast } from "./AddForecast";
-export type { AddForecast };
+import type { UpdateForecast } from "./UpdateForecast";
+export type { AddForecast, UpdateForecast };

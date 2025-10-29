@@ -1,4 +1,3 @@
-
 export type DialogPropsType = {
   open: boolean;
   title: string;
@@ -11,7 +10,16 @@ export interface FormDialogPropsType extends DialogPropsType {
   onSubmit: React.FormEventHandler<HTMLFormElement>;
 }
 
+export interface ConfirmationDialogPropsType extends DialogPropsType {
+  confirmText?: string;
+  onConfirm: () => void;
+}
+
 export type AddForecastDialogPropsType = Omit<
   FormDialogPropsType,
   "onSubmit" | "title" | "children"
 >;
+
+export interface EditForecastDialogPropsType extends AddForecastDialogPropsType {
+  id: string | null;
+}

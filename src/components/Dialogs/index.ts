@@ -1,3 +1,4 @@
 import AddForecastDialog from "./AddForecastDialog";
 import EditForecastDialog from "./EditForecastDialog";
-export { AddForecastDialog, EditForecastDialog };
+import ConfirmationDialog from "./ConfirmationDialog";
+export { AddForecastDialog, EditForecastDialog, ConfirmationDialog };

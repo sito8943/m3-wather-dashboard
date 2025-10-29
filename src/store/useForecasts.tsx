@@ -8,9 +8,15 @@ import type { AddForecast } from "../lib/models/";
 function useForecastsSource() {
   const data = useLocalStorage(config.forecasts, [] as WeatherForecastType[]);
 
+  const getForecastById = useCallback(
+    (id: string | null) => {
+      return data.value.find((item) => item.id === id);
+    },
+    [data]
+  );
+
   const updateForecast = useCallback(
     (updatedForecast: WeatherForecastType) => {
-      console.log(updatedForecast);
       data.set((prev) =>
         prev.map((item) =>
           item.id === updatedForecast.id ? updatedForecast : item
@@ -46,6 +52,7 @@ function useForecastsSource() {
     forecasts: data.value,
     removeForecast,
     addForecast,
+    getForecastById,
     updateForecast,
   };
 }

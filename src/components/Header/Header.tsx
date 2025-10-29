@@ -10,8 +10,8 @@ function Header() {
   const [showAdd, setShowAdd] = useState(false);
 
   return (
-    <header className="flex items-center justify-between px-4">
-      <h1>Weather Dashboard</h1>
+    <header className="flex items-center justify-between py-4 px-4 bg-hover-primary">
+      <h1 className="text-base">Weather Dashboard</h1>
       <div className="flex items-center gap-2">
         <IconButton
           name="add-forecast"
