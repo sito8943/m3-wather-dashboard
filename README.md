@@ -25,6 +25,14 @@ Small weather dashboard that lets you add multiple locations and view the curren
 - Build: `npm run build`
 - Preview build: `npm run preview`
 
+**CI/CD (GitHub Actions + Pages)**
+- CI: Builds and lints on every push/PR (`.github/workflows/ci.yml`).
+- Deploy: Builds and deploys to GitHub Pages on pushes to `main` (`.github/workflows/deploy.yml`).
+- One-time setup in GitHub:
+  - Settings → Pages → Build and deployment → Source: “GitHub Actions”.
+  - Optional: Change the deploy branch in `deploy.yml` if you use a branch other than `main`.
+- Note: `vite.config.ts` sets `base: "./"` so assets work under a subpath (Pages). The deploy step also copies `index.html` to `404.html` for SPA fallback.
+
 **Environment**
 - Create a `.env` file with:
   - `VITE_FORECASTS_LOCAL_KEY="local.forecasts"`
@@ -60,4 +68,3 @@ Small weather dashboard that lets you add multiple locations and view the curren
 
 **License**
 - MIT
-
