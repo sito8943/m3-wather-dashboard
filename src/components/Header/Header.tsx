@@ -1,5 +1,5 @@
 import { faAdd, faTrash, faRotate } from "@fortawesome/free-solid-svg-icons";
-import useForecasts from "../../store/useForecasts";
+import useForecasts from "../../services/weather/hooks/useForecasts";
 import { IconButton } from "../Buttons";
 import { AddForecastDialog } from "../Dialogs";
 import { useState } from "react";

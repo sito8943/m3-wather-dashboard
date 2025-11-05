@@ -1,3 +1,3 @@
-import useLocalStorage from "./useLocalStorage";
+import useLocalStorage from "../services/localStorage/hooks/useLocalStorage";
 
 export { useLocalStorage };

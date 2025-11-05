@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Grid, Header, WeatherCard } from "../components";
 import { EditForecastDialog, ConfirmationDialog } from "../components/Dialogs";
-import useForecasts from "../store/useForecasts";
+import useForecasts from "../services/weather/hooks/useForecasts";
 
 function Home() {
   const { forecasts, removeForecast } = useForecasts();

@@ -5,7 +5,7 @@ import {
   lsRemove,
   lsIsSupported,
   type JSONValue,
-} from "../services/localStorage/functions";
+} from "../utils";
 
 type SetStateAction<T> = T | ((prev: T) => T);
 

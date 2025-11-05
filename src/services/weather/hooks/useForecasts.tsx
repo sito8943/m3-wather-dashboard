@@ -1,8 +1,8 @@
 import { createContext, useCallback, useContext } from "react";
 import type { ReactNode } from "react";
-import config from "../config";
-import { useLocalStorage } from "../hooks";
-import type { WeatherForecastType, AddForecast } from "../services/weather";
+import config from "../../../config";
+import { useLocalStorage } from "../../../hooks";
+import type { WeatherForecastType, AddForecast } from "..";
 
 function useForecastsSource() {
   const data = useLocalStorage(config.forecasts, [] as WeatherForecastType[]);
