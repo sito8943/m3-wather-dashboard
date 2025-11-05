@@ -1,5 +1,5 @@
-import Home from "./views/Home";
-import { ForecastsProvider } from "./services/weather/hooks/useForecasts";
+import Home from "@/views/Home";
+import { ForecastsProvider } from "@/services/weather/hooks/useForecasts";
 
 function App() {
   return (

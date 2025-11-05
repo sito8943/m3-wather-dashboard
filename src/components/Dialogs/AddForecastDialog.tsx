@@ -2,9 +2,9 @@ import { Controller, useForm } from "react-hook-form";
 import type { AddForecastDialogPropsType } from "./types";
 import { TextInput } from "../FormInputs";
 import FormDialog from "./FormDialog";
-import useForecasts from "../../services/weather/hooks/useForecasts";
+import useForecasts from "@/services/weather/hooks/useForecasts";
 import { useEffect } from "react";
-import type { AddForecast } from "../../services/weather";
+import type { AddForecast } from "@/services/weather";
 
 function AddForecastDialog(props: AddForecastDialogPropsType) {
   const { control, handleSubmit, reset } = useForm<AddForecast>();

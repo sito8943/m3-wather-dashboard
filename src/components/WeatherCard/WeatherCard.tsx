@@ -1,9 +1,9 @@
 import { faEdit, faSpinner, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { IconButton } from "../Buttons";
 import type { WeatherCardPropsType } from "./types";
-import { fetchHourlyTemperature } from "../../services/weather";
+import { fetchHourlyTemperature } from "@/services/weather";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { getWeatherText, getWeatherTheme } from "../../services/weather";
+import { getWeatherText, getWeatherTheme } from "@/services/weather";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function WeatherCard(props: WeatherCardPropsType) {
