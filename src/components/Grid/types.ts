@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import type { WeatherForecastType } from "../../lib/types";
+import type { WeatherForecastType } from "../../services/weather/types";
 
 export type GridItemPropsType = {
   children: React.ReactNode;

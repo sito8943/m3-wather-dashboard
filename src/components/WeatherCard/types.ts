@@ -1,4 +1,4 @@
-import type { WeatherForecastType } from "../../lib/types";
+import type { WeatherForecastType } from "../../services/weather/types";
 
 export interface WeatherCardPropsType extends WeatherForecastType {
   onEditClick: (id: string) => void;

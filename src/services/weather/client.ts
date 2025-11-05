@@ -90,3 +90,4 @@ export async function fetchHourlyTemperature(
 }
 
 export default fetchHourlyTemperature;
+

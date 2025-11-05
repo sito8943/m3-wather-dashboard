@@ -1,13 +1,10 @@
 /**
- *
- * @param weatherCode weather code to parse
- * @returns semantic text of given weather code with emojis
+ * Map WMO weather code to a short, semantic text with emojis.
  */
 export const getWeatherText = (weatherCode: number | null): string => {
   if (weatherCode == null) return "";
   const code = weatherCode;
 
-  // Basic WMO weather code mapping (EN + emojis)
   if (code === 0) return "☀️ Clear sky";
   if (code === 1) return "🌤️ Mainly clear";
   if (code === 2) return "⛅ Partly cloudy";
@@ -70,3 +67,4 @@ export const getWeatherTheme = (weatherCode: number | null): string => {
   if ([96, 99].includes(code)) return "weather-thunder"; // Thunder + hail
   return "weather-clouds";
 };
+

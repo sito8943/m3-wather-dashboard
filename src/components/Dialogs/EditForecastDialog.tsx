@@ -4,7 +4,7 @@ import { TextInput } from "../FormInputs";
 import FormDialog from "./FormDialog";
 import useForecasts from "../../store/useForecasts";
 import { useEffect } from "react";
-import type { UpdateForecast } from "../../lib/models";
+import type { UpdateForecast } from "../../services/weather";
 
 function EditForecastDialog(props: EditForecastDialogPropsType) {
   const { id } = props;
